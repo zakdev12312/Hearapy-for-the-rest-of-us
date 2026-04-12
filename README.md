@@ -1,73 +1,32 @@
 # Hearapy For The Rest Of Us
 
-A dedicated web application for restorative audio therapy. Providing simple, pure-tone frequencies to assist in auditory restoration and relaxation.
+A simple, no-nonsense web app for restorative audio therapy.
 
-Currently, two official plugins are available:
+## What it does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Restorative Tone**: Deep, pure sine wave tones (20-100Hz) with a timer (30s, 1min, or 5min). Think grounding, low-frequency sound.
+- **Brown Noise**: A deep, airplane-cabin-style rumble that plays indefinitely. No timer, just continuous soothing noise.
 
-## React Compiler
+Features:
+- Switch between tone and brown noise modes
+- Adjustable timer presets for the tone
+- Reset button to restart the timer
+- Light/dark mode toggle (your preference is saved)
+- Works entirely in your browser - no downloads, no accounts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Run it locally
 
-## Expanding the ESLint configuration
+Option 1: Download ZIP
+1. Download this repo as a ZIP and extract it
+2. Open a terminal and `cd` into the folder
+3. Run `npm install` then `npm run dev`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Option 2: Git Clone
+```bash
+git clone https://github.com/zakdev12312/Hearapy-for-the-rest-of-us.git
+cd Hearapy-for-the-rest-of-us
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Then open `http://localhost:5173` in your browser.
