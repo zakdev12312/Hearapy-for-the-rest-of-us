@@ -2,6 +2,9 @@
 
 A simple, no-nonsense web app for restorative audio therapy.
 
+>[!TIP]
+>Check the projects tab to see what's planned. If you think there is something missing, create an issue.
+
 ## What it does
 
 - **Restorative Tone**: Deep, pure sine wave tones (20-100Hz) with a timer (30s, 1min, or 5min). Think grounding, low-frequency sound.
