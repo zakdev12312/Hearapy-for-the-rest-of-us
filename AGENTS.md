@@ -1,28 +1,35 @@
 # AGENTS.md
 
 ## Dev Commands
-- `npm run dev` - Start dev server
+- `npm run dev` - Dev server
 - `npm run build` - Type-check + Vite build
 - `npm run lint` - ESLint (flat config, no type-aware rules)
 
 ## Tech Stack
-- React 19 + Vite 8
-- TypeScript (strict, project references: `tsconfig.app.json`, `tsconfig.node.json`)
-- Tailwind CSS v4 with `@tailwindcss/postcss` plugin (NOT tailwindcss v3 postcss plugin)
-- shadcn/ui-style components using Radix UI primitives
-- Web Audio API for tone generation
-
-## Path Alias
-- `@/` maps to `./src/`
+- React 19 + Vite + TypeScript (strict, project references)
+- Tailwind CSS v4 (`@tailwindcss/postcss` plugin, NOT v3)
+- shadcn/ui-style components (Radix UI, CVA variants, new-york style)
+- Web Audio API (oscillator-based tone generation)
+- `@/` aliases to `./src/`
 
 ## Key Files
-- `src/App.tsx` - Main audio therapy UI (Web Audio API oscillator)
-- `src/components/ui/` - Reusable UI components (Button, Card, Slider)
+- `src/App.tsx` - Main audio therapy UI
+- `src/components/ui/` - Button, Card, Slider components
 - `src/lib/utils.ts` - `cn()` utility (clsx + tailwind-merge)
-- `components.json` - shadcn/ui config (style: new-york, icons: lucide)
+- `components.json` - shadcn/ui config reference
 
-## Notes
+## Gotchas
 - No test suite configured
 - ESLint uses flat config (`eslint.config.js`), NOT `.eslintrc`
-- Tailwind v4 uses `@import "tailwindcss"` in CSS, NOT `@tailwind base/components/utilities`
-- React Compiler is intentionally NOT enabled
+- Tailwind v4: CSS uses `@import "tailwindcss"`, NOT `@tailwind base/components/utilities`
+- CSS variables use HSL format with `@theme` directive (not standard Tailwind)
+- React Compiler is NOT enabled
+
+## Git CLI
+
+Basic workflow:
+- `git add .` - Stage all changes
+- `git commit -m "message"` - Commit staged changes
+- `git push origin master` - Push to remote
+- `git pull origin master` - Pull latest changes
+- `git status` - Check what's changed
