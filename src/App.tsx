@@ -9,13 +9,14 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState(30);
   const [frequency, setFrequency] = useState(50);
   const [timerDuration, setTimerDuration] = useState(30);
-  const [mode, setMode] = useState<'restorative' | 'brown'>('restorative');
+  const [mode, setMode] = useState<'restorative' | 'brown'>('brown');
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
     }
     return 'dark';
   });
+  const [isSpinning, setIsSpinning] = useState(false);
 
   const timerPresets = [
     { label: '30s', value: 30 },
@@ -28,6 +29,7 @@ export default function App() {
   const gainNodeRef = useRef<GainNode | null>(null);
   const noiseNodeRef = useRef<AudioBufferSourceNode | null>(null);
   const timerRef = useRef<number | null>(null);
+  const konamiSequence = useRef<string[]>([]);
 
   const initAudio = () => {
     if (!audioContextRef.current) {
@@ -191,13 +193,52 @@ export default function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // Konami code easter egg: ↑ ↑ ↓ ↓ ← → ← → B A
+  useEffect(() => {
+    const KONAMI_CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      konamiSequence.current.push(e.key);
+      // Keep only the last 10 keys
+      if (konamiSequence.current.length > 10) {
+        konamiSequence.current.shift();
+      }
+      
+      // Check if sequence matches Konami code
+      if (konamiSequence.current.join(',') === KONAMI_CODE.join(',')) {
+        setIsSpinning(true);
+        konamiSequence.current = []; // Reset sequence
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Reset spin after animation completes
+  useEffect(() => {
+    if (isSpinning) {
+      const timer = setTimeout(() => {
+        setIsSpinning(false);
+      }, 1000); // Match animation duration
+      return () => clearTimeout(timer);
+    }
+  }, [isSpinning]);
+
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
   return (
-    <div className={`min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-300 ${theme === 'dark' ? 'bg-zinc-950 text-zinc-50 selection:bg-zinc-800' : 'bg-zinc-100 text-zinc-900 selection:bg-zinc-300'}`}>
-      <div className={`absolute top-8 left-8 flex items-center space-x-2 ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'}`}>
+    <div className={`min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-300 ${isSpinning ? 'animate-spin-smooth' : ''} ${theme === 'dark' ? 'bg-zinc-950 text-zinc-50 selection:bg-zinc-800' : 'bg-zinc-100 text-zinc-900 selection:bg-zinc-300'}`}>
+      <div 
+        onClick={() => {
+          if (isPlaying) stopTone();
+          setMode('brown');
+          setTimeLeft(timerDuration);
+        }}
+        className={`absolute top-8 left-8 flex items-center space-x-2 cursor-pointer transition-transform duration-300 hover:scale-105 hover:-rotate-1 ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'}`}
+      >
         <Activity className={`w-6 h-6 ${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`} />
         <span className={`font-bold tracking-tight text-xl ${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}>Hearapy For The Rest Of Us</span>
       </div>
@@ -253,7 +294,7 @@ export default function App() {
               </>
             ) : (
               <div className={`w-40 h-40 rounded-full border-4 flex flex-col items-center justify-center transition-colors duration-500 ${isPlaying ? 'border-emerald-500 bg-emerald-500/10' : theme === 'dark' ? 'border-zinc-700 bg-zinc-800/50' : 'border-zinc-300 bg-zinc-100'}`}>
-                <span className={`text-3xl font-light tracking-tighter text-center leading-tight ${theme === 'dark' ? '' : 'text-zinc-700'}`}>
+                <span className={`text-3xl font-medium tracking-tighter text-center leading-tight ${theme === 'dark' ? '' : 'text-zinc-700'}`}>
                   Brown<br/>Noise
                 </span>
               </div>
