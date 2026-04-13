@@ -1,4 +1,4 @@
-# Hearapy For The Rest Of Us
+# hearapy For The Rest Of Us
 
 A simple, no-nonsense web app for restorative audio therapy.
 
@@ -26,13 +26,13 @@ Option 1: Download ZIP
 
 Option 2: Git Clone
 ```bash
-git clone https://github.com/zakdev12312/Hearapy-for-the-rest-of-us.git
-cd Hearapy-for-the-rest-of-us
+git clone https://github.com/zakdev12312/hearapy-for-the-rest-of-us.git
+cd hearapy-for-the-rest-of-us
 npm install
 npm run dev
 ```
 
-Then open `http://localhost:5173/Hearapy-for-the-rest-of-us` in your browser.
+Then open `http://localhost:5173/hearapy-for-the-rest-of-us` in your browser.
 
 ---
 

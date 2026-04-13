@@ -244,7 +244,7 @@ export default function App() {
         className={`absolute top-8 left-8 flex items-center space-x-2 cursor-pointer transition-transform duration-300 hover:scale-105 hover:-rotate-1 ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'}`}
       >
         <img src="./favicon.svg" alt="" className="w-6 h-6" />
-        <span className={`font-bold tracking-tight text-xl ${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}>Hearapy For The Rest Of Us</span>
+        <span className={`font-bold tracking-tight text-xl ${theme === 'dark' ? 'text-zinc-50' : 'text-zinc-900'}`}>hearapy For The Rest Of Us</span>
       </div>
 
       <div className="absolute top-8 right-8 flex items-center gap-2">

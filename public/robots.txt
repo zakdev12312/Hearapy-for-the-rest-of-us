@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zakdev12312.github.io/Hearapy-for-the-rest-of-us/sitemap.xml
+Sitemap: https://zakdev12312.github.io/hearapy-for-the-rest-of-us/sitemap.xml
