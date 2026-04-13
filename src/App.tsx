@@ -22,6 +22,7 @@ export default function App() {
     { label: '30s', value: 30 },
     { label: '1m', value: 60 },
     { label: '5m', value: 300 },
+    { label: '∞', value: 0 }, // Infinite - no timer
   ];
   
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -100,15 +101,18 @@ export default function App() {
 
     if (mode === 'restorative') {
       setTimeLeft(timerDuration);
-      timerRef.current = window.setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev <= 1) {
-            stopTone();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
+      // Only start timer if not in infinite mode
+      if (timerDuration > 0) {
+        timerRef.current = window.setInterval(() => {
+          setTimeLeft((prev) => {
+            if (prev <= 1) {
+              stopTone();
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+      }
     }
   };
 
@@ -269,7 +273,9 @@ export default function App() {
           </CardTitle>
           <CardDescription className={`text-base ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'}`}>
             {mode === 'restorative'
-              ? `${timerDuration >= 60 ? `${Math.floor(timerDuration / 60)} minute${timerDuration >= 120 ? 's' : ''}` : `${timerDuration} seconds`} of ${frequency}Hz pure sine wave.`
+              ? timerDuration === 0
+                ? `Infinite playback of ${frequency}Hz pure sine wave.`
+                : `${timerDuration >= 60 ? `${Math.floor(timerDuration / 60)} minute${timerDuration >= 120 ? 's' : ''}` : `${timerDuration} seconds`} of ${frequency}Hz pure sine wave.`
               : 'Deep brown noise for relaxation and sleep.'}
           </CardDescription>
         </CardHeader>
@@ -281,7 +287,7 @@ export default function App() {
               <>
                 <div className={`w-40 h-40 rounded-full border-4 flex items-center justify-center transition-colors duration-500 ${isPlaying ? 'border-emerald-500 bg-emerald-500/10' : theme === 'dark' ? 'border-zinc-700 bg-zinc-800/50' : 'border-zinc-300 bg-zinc-100'}`}>
                   <span className={`text-5xl font-light font-mono tabular-nums tracking-tighter ${theme === 'dark' ? '' : 'text-zinc-700'}`}>
-                    {formatTime(timeLeft)}
+                    {timerDuration === 0 ? '∞' : formatTime(timeLeft)}
                   </span>
                 </div>
                 <button
