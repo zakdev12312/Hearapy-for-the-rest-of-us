@@ -250,17 +250,17 @@ export default function App() {
       <div className="absolute top-8 right-8 flex items-center gap-2">
         <button
           onClick={toggleTheme}
-          className={`p-2 rounded-lg transition-colors ${theme === 'dark' ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300' : 'bg-white hover:bg-zinc-200 text-zinc-700 border border-zinc-300'}`}
+          className={`p-2 rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 ${theme === 'dark' ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300' : 'bg-white hover:bg-zinc-200 text-zinc-700 border border-zinc-300'}`}
           title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
         >
-          {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          {theme === 'dark' ? <Sun className="w-5 h-5 transition-transform duration-500 hover:rotate-180" /> : <Moon className="w-5 h-5 transition-transform duration-500 hover:-rotate-12" />}
         </button>
         <button
           onClick={() => {
             if (isPlaying) stopTone();
             setMode(mode === 'restorative' ? 'brown' : 'restorative');
           }}
-          className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors border ${theme === 'dark' ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border-zinc-700' : 'bg-white hover:bg-zinc-200 text-zinc-700 border-zinc-300'}`}
+          className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ease-out hover:scale-105 active:scale-95 border ${theme === 'dark' ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border-zinc-700' : 'bg-white hover:bg-zinc-200 text-zinc-700 border-zinc-300'}`}
         >
           {mode === 'restorative' ? 'Switch to Brown Noise' : 'Switch to Restorative'}
         </button>
