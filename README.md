@@ -3,7 +3,7 @@
 A simple, no-nonsense web app for restorative audio therapy.
 
 >[!TIP]
->Check the projects tab to see what's planned. If you think there is something missing, create an issue.
+>Don't forget to share this tool to help others find it!
 
 ## What it does
 
@@ -33,3 +33,7 @@ npm run dev
 ```
 
 Then open `http://localhost:5173` in your browser.
+
+---
+
+© 2025 zakdev12312. MIT Licensed.

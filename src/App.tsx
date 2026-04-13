@@ -358,6 +358,10 @@ export default function App() {
       <p className={`mt-12 text-sm max-w-sm text-center ${theme === 'dark' ? 'text-zinc-500' : 'text-zinc-400'}`}>
         Make sure your device volume is set to a comfortable level before pressing start.
       </p>
+      
+      <p className={`mt-4 text-xs text-center ${theme === 'dark' ? 'text-zinc-600' : 'text-zinc-400'}`}>
+        © 2025 zakdev12312 · MIT License
+      </p>
     </div>
   );
 }
