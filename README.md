@@ -3,7 +3,7 @@
 A simple, no-nonsense web app for restorative audio therapy.
 
 >[!IMPORTANT]
-> iOS currently has no working audio. Android is currently unknown. Please drop thoughts in a discussion or issue. I'll be working on it.
+> iOS currently has no working audio. Android is currently unknown. Please drop anything in a discussion or issue. I'll be working on it.
 
 ## What it does
 
