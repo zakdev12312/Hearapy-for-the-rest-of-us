@@ -2,8 +2,8 @@
 
 A simple, no-nonsense web app for restorative audio therapy.
 
->[!TIP]
->Don't forget to share this tool to help others find it!
+>[!IMPORTANT]
+> iOS currently has no working audio. Android is currently unknown. Please drop thoughts in a discussion or issue. I'll be working on it.
 
 ## What it does
 
