@@ -36,9 +36,5 @@ Then open `http://localhost:5173/hearapy-for-the-rest-of-us` in your browser.
 
 ---
 
+© 2025 zakdev12312. Licensed under the MIT license.
 
-
-
-
-
-© 2025 zakdev12312. MIT Licensed.
