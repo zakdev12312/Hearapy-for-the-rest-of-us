@@ -30,6 +30,6 @@
 Basic workflow:
 - `git add .` - Stage all changes
 - `git commit -m "message"` - Commit staged changes
-- `git push origin master` - Push to remote
-- `git pull origin master` - Pull latest changes
+- `git push origin main` - Push to remote
+- `git pull origin main` - Pull latest changes
 - `git status` - Check what's changed
